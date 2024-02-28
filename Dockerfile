@@ -12,9 +12,9 @@ RUN chgrp -R 0 /opt/softwareag && chmod -R g=u /opt/softwareag
 
 FROM ubi8/ubi:latest
 
-ENV SAG_HOME=/opt/softwareag
-ENV JAVA_HOME=${SAG_HOME}/jvm/jvm/
-ENV JRE_HOME=${SAG_HOME}/jvm/jvm/
+ENV SAG_HOME /opt/softwareag
+ENV JAVA_HOME ${SAG_HOME}/jvm/jvm/
+ENV JRE_HOME ${SAG_HOME}/jvm/jvm/
 COPY --from=base ${SAG_HOME} ${SAG_HOME}
 
 USER root
