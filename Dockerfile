@@ -3,7 +3,7 @@ FROM default-route-openshift-image-registry.apps-crc.testing/build/webmethods-mi
 FROM ubi8/ubi:latest as base
 ENV SAG_HOME /opt/softwareag
 
-COPY --from=install ${SAG_HOME} ${SAG_HOME}
+COPY --from=install --chown=0:0 ${SAG_HOME} ${SAG_HOME}
 COPY --from=wpx /root/wpx ${SAG_HOME}/wpx
 
 RUN chgrp -R 0 ${SAG_HOME} && chmod -R g=u ${SAG_HOME}
