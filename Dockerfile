@@ -1,12 +1,12 @@
 FROM default-route-openshift-image-registry.apps-crc.testing/build/wpx AS wpx
+FROM default-route-openshift-image-registry.apps-crc.testing/build/webmethods-microservicesruntime:10.15 as install
+FROM ubi8/ubi:latest as base
+ENV SAG_HOME /opt/softwareag
 
-FROM default-route-openshift-image-registry.apps-crc.testing/build/webmethods-microservicesruntime:10.15 as base
+COPY --from=install ${SAG_HOME} ${SAG_HOME}
+COPY --from=wpx /root/wpx ${SAG_HOME}/wpx
 
-COPY --from=wpx /root/wpx /opt/softwareag/wpx
-
-USER root
-
-RUN chgrp -R 0 /opt/softwareag && chmod -R g=u /opt/softwareag
+RUN chgrp -R 0 ${SAG_HOME} && chmod -R g=u ${SAG_HOME}
 
 # make msr openshift compatible
 
@@ -17,11 +17,7 @@ ENV JAVA_HOME ${SAG_HOME}/jvm/jvm/
 ENV JRE_HOME ${SAG_HOME}/jvm/jvm/
 COPY --from=base ${SAG_HOME} ${SAG_HOME}
 
-USER root
-
 RUN chgrp 0 ${SAG_HOME} && chmod g=u ${SAG_HOME}
-
-USER 1724
 
 EXPOSE 5555
 EXPOSE 9999
