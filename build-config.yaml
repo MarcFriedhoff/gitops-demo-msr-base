@@ -1,0 +1,22 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: msr-base
+spec:
+  runPolicy: Serial
+  source:
+    git:
+      uri: "https://github.com/MarcFriedhoff/msr-base.git"
+    type: Git
+    sourceSecret:
+      name: git-credentials
+  strategy:
+    dockerStrategy:
+      dockerfilePath: Dockerfile
+      pull-secret: 
+        name: regcred
+    type: Docker
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'msr-base:latest'
