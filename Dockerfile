@@ -21,6 +21,8 @@ USER root
 
 RUN chgrp 0 ${SAG_HOME} && chmod g=u ${SAG_HOME}
 
+USER 1724
+
 EXPOSE 5555
 EXPOSE 9999
 EXPOSE 5543
