@@ -6,7 +6,7 @@ spec:
   runPolicy: Serial
   source:
     git:
-      uri: "https://github.com/MarcFriedhoff/msr-base.git"
+      uri: "https://github.com/MarcFriedhoff/gitops-demo-msr-base.git"
     type: Git
     sourceSecret:
       name: git-credentials
