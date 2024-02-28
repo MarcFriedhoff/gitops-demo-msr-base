@@ -1,5 +1,5 @@
 FROM default-route-openshift-image-registry.apps-crc.testing/build/wpx AS wpx
-FROM default-route-openshift-image-registry.apps-crc.testing/build/webmethods-microservicesruntime:10.15 as install
+FROM default-route-openshift-image-registry.apps-crc.testing/build/webmethods-microservicesruntime:10.15.0.9-ubi as install
 FROM ubi8/ubi:latest as base
 ENV SAG_HOME /opt/softwareag
 
