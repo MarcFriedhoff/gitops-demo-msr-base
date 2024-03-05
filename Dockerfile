@@ -23,4 +23,6 @@ EXPOSE 5555
 EXPOSE 9999
 EXPOSE 5543
 
+VOLUME [ "/opt/softwareag" ]
+
 ENTRYPOINT ["/opt/softwareag/IntegrationServer/bin/startContainer.sh"]
